@@ -16,6 +16,13 @@ pipeline {
             }
         }
 
+        stage('PMD') {
+            steps {
+                // 运行PMD分析
+                bat 'mvn pmd:pmd'
+            }
+        }
+
         stage('Test') {
             steps {
                 // 运行测试
@@ -29,12 +36,7 @@ pipeline {
             }
         }
 
-        stage('PMD') {
-            steps {
-                // 运行PMD分析
-                bat 'mvn pmd:pmd'
-            }
-        }
+
 
         stage('Generate Reports') {
             steps {
