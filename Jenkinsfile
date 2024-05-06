@@ -7,17 +7,12 @@ pipeline {
     }
 
     stages {
-        stage('Checkout SCM') {
-            steps {
-                // 检出源代码
-                checkout scm
-            }
-        }
 
-        stage('Build Application') {
+        stage('Package') { 
             steps {
-                // 使用 Maven 构建和打包应用
-                sh 'mvn clean package'
+              checkout scmGit(branches: [[name: '*/master']], extensions: [], 
+userRemoteConfigs: [[url: 'https://github.com/supermarkli/Teedy.git']])
+              sh 'mvn -B -DskipTests clean package' 
             }
         }
 
