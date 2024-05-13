@@ -35,7 +35,7 @@ userRemoteConfigs: [[url: 'https://github.com/supermarkli/Teedy.git']])
 
         stage('Update K8s Deployment') {
             steps {
-                sh 'kubectl set image deployment/hello-node hello-node=${DOCKER_IMAGE}'
+                sh 'kubectl set image deployment/hello-node teedytest2024=${DOCKER_IMAGE}'
             }
         }
 
