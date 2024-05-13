@@ -45,12 +45,5 @@ userRemoteConfigs: [[url: 'https://github.com/supermarkli/Teedy.git']])
         }
     }
 
-    post {
-        always {
-            // 存档构建产物
-            archiveArtifacts artifacts: '**/target/**/*.jar', fingerprint: true
-            archiveArtifacts artifacts: '**/target/**/*.war', fingerprint: true
-            archiveArtifacts artifacts: '**/target/site/**', fingerprint: true
-        }
-    }
+ 
 }
