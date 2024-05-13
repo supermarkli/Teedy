@@ -33,11 +33,17 @@ userRemoteConfigs: [[url: 'https://github.com/supermarkli/Teedy.git']])
             }
         }
 
-        stage('Update K8s Deployment') {
+        stage('Deploy Containers') {
             steps {
-                sh 'kubectl set image deployment/hello-node hello-node=${DOCKER_IMAGE}'
+                script {
+                    sh "docker pull ${DOCKER_IMAGE}"
+                    sh "docker run -d -p 8082:8080 ${DOCKER_IMAGE}"
+                    sh "docker run -d -p 8083:8080 ${DOCKER_IMAGE}"
+                    sh "docker run -d -p 8084:8080 ${DOCKER_IMAGE}"
+                }
             }
         }
+
 
     }
 
